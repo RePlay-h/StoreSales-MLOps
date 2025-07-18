@@ -1,0 +1,13 @@
+preprocess:
+  input:
+    train: data/raw/train.csv
+    oil: data/raw/oil.csv
+    holidays_events: data/raw/holidays_events.csv
+    sample_submission: data/raw/sample_submission.csv
+    stores: data/raw/stores.csv
+    transactions: data/raw/transactions.csv 
+  output:
+    data: data/processed/data.csv
+  
+evaluate:
+  input: data/processed/data.csv

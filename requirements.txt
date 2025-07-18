@@ -1,0 +1,8 @@
+scikit-learn
+mlflow==2.8.1
+seaborn
+dvc-s3
+dagshub
+dvc
+xgboost
+matplotlib
