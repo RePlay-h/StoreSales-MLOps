@@ -9,5 +9,8 @@ preprocess:
   output:
     data: data/processed/data.csv
   
-evaluate:
+train:
   input: data/processed/data.csv
+  save_xgb_path: model/xgb.pkl
+  save_rf_path: model/rf.pkl
+
