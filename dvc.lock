@@ -1,0 +1,81 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/preprocess.py
+    deps:
+    - path: data/raw/holidays_events.csv
+      hash: md5
+      md5: 6a71fe2fb783e8e6758a53d417b75872
+      size: 22309
+    - path: data/raw/oil.csv
+      hash: md5
+      md5: 4767ef51a4ff57e65538afa9b1c5e1b5
+      size: 20580
+    - path: data/raw/sample_submission.csv
+      hash: md5
+      md5: 28b7578c90501ff04c3467e76c2b2e3c
+      size: 342153
+    - path: data/raw/stores.csv
+      hash: md5
+      md5: 8414fbafbc7dcb33498d1a3c0cf2fda6
+      size: 1387
+    - path: data/raw/test.csv
+      hash: md5
+      md5: c83f62c8bce75a3cb0a246b01fe29256
+      size: 1022269
+    - path: data/raw/train.csv
+      hash: md5
+      md5: b84434bf8eede5345ec04e41dfe9d86e
+      size: 121800373
+    - path: data/raw/transactions.csv
+      hash: md5
+      md5: db5fa89caf46386aba0ed5bad7a403c7
+      size: 1552637
+    - path: src/preprocess.py
+      hash: md5
+      md5: b8060fa5744bda6aa9408e94d6ba5658
+      size: 3067
+    params:
+      params.yaml:
+        preprocess.input.holidays_events: data/raw/holidays_events.csv
+        preprocess.input.oil: data/raw/oil.csv
+        preprocess.input.sample_submission: data/raw/sample_submission.csv
+        preprocess.input.stores: data/raw/stores.csv
+        preprocess.input.train: data/raw/train.csv
+        preprocess.input.transactions: data/raw/transactions.csv
+        preprocess.output.data: data/processed/data.csv
+    outs:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 0aeb55dfdf8168fb03db101fe3ea34fc
+      size: 267364965
+  train:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed/data.csv
+      hash: md5
+      md5: 0aeb55dfdf8168fb03db101fe3ea34fc
+      size: 267364965
+    - path: src/train.py
+      hash: md5
+      md5: 9b3b034b05ff7e2c1d00685dc3d0be0f
+      size: 5898
+    params:
+      params.yaml:
+        train.input: data/processed/data.csv
+        train.save_metrics: metrics/metrics.csv
+        train.save_rf_path: model/rf.pkl
+        train.save_xgb_path: model/xgb.pkl
+    outs:
+    - path: metrics/metrics.csv
+      hash: md5
+      md5: bd054f308fba1fa32750bc92d86fc7bb
+      size: 445
+    - path: model/rf.pkl
+      hash: md5
+      md5: af76ad71698c04e41b22e1566aad5a76
+      size: 932857
+    - path: model/xgb.pkl
+      hash: md5
+      md5: 7fc0747e2f98f5a4b402f3fb57ec4b12
+      size: 244781
