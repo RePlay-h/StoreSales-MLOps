@@ -164,9 +164,14 @@ def train(df, save_rf_path, save_xgb_path):
 
     return records
 
-def metrics_table(records):
+def metrics_table(records, save_path):
+    ## Create metrics_table
     table = pd.DataFrame(records)
-    return table
+    ## Create a folder for the csv file
+    os.makedirs(os.path.dirname(save_path), exist_ok=True)
+    
+    table.to_csv(save_path, index=False)
+    print(table)
 
 
 if __name__ == '__main__':
@@ -180,6 +185,6 @@ if __name__ == '__main__':
     records = train(rand_sample, params['save_rf_path'], params['save_xgb_path'])
 
     ## Create metrics table
-    df = metrics_table(records)
+    metrics_table(records, params['save_metrics'])
 
-    print(df)
+   
