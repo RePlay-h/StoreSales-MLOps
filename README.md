@@ -2,6 +2,8 @@
 
 This project is based on the Kaggle competition [Store Sales - Time Series Forecasting](https://www.kaggle.com/competitions/store-sales-time-series-forecasting/data). It demonstrates a full MLOps pipeline using modern tools like **DVC**, **MLflow**, and modular **Pipelines**.
 
+In order to view the pipeline, the metrics.csv, and the pickle files, you need to visit my [DagsHub](https://dagshub.com/RePlay-h/StoreSales-MLOps)
+
 ## 🔧 Project Structure
 ```
 ## 🔧 Project Structure
