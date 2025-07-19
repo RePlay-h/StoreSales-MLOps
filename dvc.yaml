@@ -1,9 +1,15 @@
 stages:
   preprocess:
-    cmd: src/preprocess.py -d data/raw/holidays_events.csv -d data/raw/oil.csv 
-      -d data/raw/sample_submission.csv -d data/raw/stores.csv -d 
-      data/raw/test.csv -d data/raw/train.csv -d data/raw/transactions.csv 
-      data/processed/data.csv src/preprocess.py
+    cmd: python src/preprocess.py
+    deps:
+    - data/raw/holidays_events.csv
+    - data/raw/oil.csv
+    - data/raw/sample_submission.csv
+    - data/raw/stores.csv
+    - data/raw/test.csv
+    - data/raw/train.csv
+    - data/raw/transactions.csv
+    - src/preprocess.py
     params:
     - preprocess.input.holidays_events
     - preprocess.input.oil
@@ -12,11 +18,19 @@ stages:
     - preprocess.input.train
     - preprocess.input.transactions
     - preprocess.output.data
+    outs:
+    - data/processed/data.csv
   train:
-    cmd: src/train.py -d data/processed/data.csv-o 
-      model/rf.pkl,model/xgb.pkl,metrics/metrics.csvpython src/train.py
+    cmd: python src/train.py
+    deps:
+    - data/processed/data.csv
+    - src/train.py
     params:
-    - save_metrics-d
-    - save_rf_path
+    - train.save_metrics
+    - train.save_rf_path
     - train.input
     - train.save_xgb_path
+    outs:
+    - model/rf.pkl
+    - model/xgb.pkl
+    - metrics/metrics.csv
